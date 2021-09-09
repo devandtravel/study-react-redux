@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
 import { v4 } from 'uuid'
+import { addCustomerAction, removeCustomerAction } from './store/customerReducer'
 
 export default function App() {
   const dispatch = useDispatch()
@@ -18,10 +19,10 @@ export default function App() {
       name,
       id: v4()
     }
-    dispatch({ type: 'ADD_CUSTOMER', payload: customer })
+    dispatch(addCustomerAction(customer))
   }
   const removeCustomer = customer => {
-    dispatch({ type: 'REMOVE_CUSTOMER', payload: customer.id })
+    dispatch(removeCustomerAction(customer.id))
   }
 
   return (
@@ -30,9 +31,7 @@ export default function App() {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button onClick={() => addCash(5)}>Add Cash</button>
         <button onClick={() => getCash(10)}>Get Cash</button>
-        <button onClick={() => addCustomer('Customer ' + v4())}>
-          Add Customer
-        </button>
+        <button onClick={() => addCustomer('Customer ' + v4())}>Add Customer</button>
       </div>
       {customers.length > 0 ? (
         <div
