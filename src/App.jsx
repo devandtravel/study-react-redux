@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
 import { v4 } from 'uuid'
 import { addCustomerAction, removeCustomerAction } from './store/customerReducer'
+import { addCashAction, removeCashAction } from './store/cashReducer'
 
 export default function App() {
   const dispatch = useDispatch()
@@ -9,10 +10,10 @@ export default function App() {
   const customers = useSelector(state => state.customers.customers)
 
   const addCash = cash => {
-    dispatch({ type: 'ADD_CASH', payload: cash })
+    dispatch(addCashAction(cash))
   }
   const getCash = cash => {
-    dispatch({ type: 'GET_CASH', payload: cash })
+    dispatch(removeCashAction(cash))
   }
   const addCustomer = name => {
     const customer = {
